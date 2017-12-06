@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- <mapper namespace="model.Customer"> -->
+<mapper namespace="mapper.CustomerMapper">
+    <insert id="add" parameterType="Customer">
+        insert into t_customer (name,version,description,country,thirdParty)
+        	value(#{name},0, #{description},#{country}, 0)
+    </insert>
+    
+    <update id="update" parameterType="Customer">
+        update t_customer set description=#{description},country=#{country} where id=#{id}
+    </update>
+    
+    <update id="delete" parameterType="int">
+        delete from t_customer where id=#{id}
+    </update>
+    
+    <select id="load" parameterType="int" resultType="Customer">
+        select * from t_customer where id=#{id}
+    </select>
+    
+     <select id="list" resultType="Customer">
+        select * from t_customer;
+    </select>
+</mapper>
